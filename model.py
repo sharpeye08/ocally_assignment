@@ -39,7 +39,7 @@ class ProphetForecaster:
         model = Prophet(
             yearly_seasonality= True,
             weekly_seasonality= True,
-            daily_seasonality= True,
+            daily_seasonality= False,
             seasonality_mode= "multiplicative",
             changepoint_prior_scale= 0.05, # regulariztion
         )
@@ -68,7 +68,6 @@ class ProphetForecaster:
         future = model.make_future_dataframe(periods=14, include_history=False)
         
         # We need to provide regressor values for the future
-       
         last_visits = prophet_df['visits'].tail(30).mean()
         last_weekend = 1 if future['ds'].iloc[0].dayofweek >= 5 else 0
         last_event = 0  
@@ -91,6 +90,7 @@ class ProphetForecaster:
         
         return result
     
+    
     def evaluate(self, test_days=14):
         results = []
         
@@ -106,7 +106,7 @@ class ProphetForecaster:
             temp_prophet = ProphetForecaster(train_df)
             temp_prophet.train(biz)
             
-            # Make predictions day by day (walk-forward) or all at once
+            # Make predictions day by day
             predictions = []
             history = train_df.copy()
             
@@ -190,7 +190,6 @@ def main():
     df['date'] = pd.to_datetime(df['date'])
     print(f"\nLoaded {len(df):,} records from {df['date'].min().date()} to {df['date'].max().date()}")
 
-    # Initialize forecaster
     forecaster = ProphetForecaster(df)
 
     # Train models for all businesses
