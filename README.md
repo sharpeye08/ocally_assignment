@@ -23,6 +23,6 @@ One thing with **Prophet** is that it wont work if we dont rename the data and t
 I got **38% mean absolute percentage error** which is quiet high but our specific dataset had sparse marketing data and missing values. Our data has inherent volatility. Example `nonna_tratttoria` had average revenue of  $6075 per day but for some days the revenue was $20000+. Also our marketing data is sparse. It had only 30 odd marketing days out of 549 (6% of total)  which means that our model had very few examples to learn from. One way we could improve accuracy is if we reduce outlier impact by capping extreme values, another way is tuning model's hyperparameter  per business.
 
 **the current flow of my model looks like** :
-*train prophet models --> generate 14 days forecast -->  recommend if we spend on marketing  or not*
+![alt text](image.png)
 
 my model predicts spending 200$ on `nonna_trattoria` this week. expected roi would be `8.68x` and expected revenue boost will be $1736. Best day to spend is `2026-01-13`. At the end we save all the forecasts to another csv file.
