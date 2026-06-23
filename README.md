@@ -1,4 +1,4 @@
-
+# my approach towards building this model
 ## getting insights on the data
 the first obvious thing i did when i got the task was to find insights on the data. I started with **performing EDA** on the data in order to understand the data better. Here are my key insights: the shape of the data was `(3028 , 9)` and there were no null values. The data had `6` unique businesses namely `blue_bottle_cafe`, `'corner_bakery'`, `'evergreen_boutique'`, `'iron_pulse_gym'`, `'nonna_trattoria'`, `'shear_genius_salon'`
 The range of dates was between `2024-07-01` to `2025-12-31` and the total number of days were `549`. There should have been a total of `3249` rows (549 * 6) but since we had only `3028` rows that means that our dataset had missing values.
